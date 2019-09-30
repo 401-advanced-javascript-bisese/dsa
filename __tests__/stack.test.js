@@ -1,17 +1,42 @@
-const stack = require("../stack");
+const Stack = require('../stack');
 
 describe(`stack`, () => {
-  it("can push and pop like a good girl", () => {
-    expect(stack([], 8)).toBe(-1);
+  it('can push like a Columbian', () => {
+    let stack = new Stack();
+    stack.push(6);
+    expect(stack.head.value).toBe(6);
+    stack.push(9);
+    expect(stack.head.value).toBe(9);
+    expect(stack.head.next.value).toBe(6);
   });
-  it("returns valid index when array contains the key we lookin fo", () => {
-    expect(stack([8], 8)).toBe(0);
-    expect(stack([8], 9)).toBe(-1);
-    expect(stack([8, 9], 9)).toBe(1);
-    expect(stack([8, 9], 10)).toBe(-1);
-    expect(stack([8, 9, 10], 11)).toBe(-1);
-    expect(stack([8, 9, 10], 9)).toBe(1);
-    expect(stack([8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 9)).toBe(1);
-    expect(stack([8, 9, 10, 11, 12, 13, 14, 15, 16, 17], 18)).toBe(-1);
+
+  it('can push it to the limit', () => {
+    let stack = new Stack();
+    stack.push(9);
+    expect(stack.head.value).toBe(9);
+    stack.push(0);
+    expect(stack.head.value).toBe(0);
+    stack.push(2);
+    expect(stack.head.value).toBe(2);
+    stack.push(1);
+    expect(stack.head.value).toBe(1);
+    stack.push(0);
+    expect(stack.head.value).toBe(0);
+  });
+
+  it('can pop it like a baaaad gurl', () => {
+    let stack = new Stack();
+    stack.push(8);
+    expect(stack.head.value).toBe(8);
+    stack.pop();
+    expect(stack.head).toBe(null);
+  });
+
+  it('can peek like a creepy grandpa', () => {
+    let stack = new Stack();
+    stack.push(9);
+    stack.push(1);
+    stack.push(1);
+    expect(stack.peek()).toBe(1);
   });
 });
